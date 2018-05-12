@@ -1,0 +1,1003 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{04 - ASSIGNMENT(3)}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Werkje gegevensbanken 2018 - DEEL
+04}\label{werkje-gegevensbanken-2018---deel-04}
+
+\subsection{Inleiding}\label{inleiding}
+
+Het vierde en laatste deel van het werkje bestaat uit twee componenten:
+1. Optimalisatie 2. Visualisatie
+
+Bij dit deel van het werkje laten we jullie veel vrijheid om tot een
+oplossing te komen. Er bestaat niet zoiets als de unieke correcte
+oplossing, het is dus de bedoeling dat jullie zelf een strategie
+uitdokteren en deze achteraf kunnen verdedigen. Leg in deze notebook
+kort uit welke keuzes je maakt en waarom, dit zal helpen bij de
+verdediging. Beschouw dit als een soort mini-verslag tussen de code
+door.
+
+\subsubsection{Indienen +
+Evaluatiemoment}\label{indienen-evaluatiemoment}
+
+** EVALULATIEMOMENT**: DE OEFENZITTING IN DE WEEK VAN
+14/05/2017-18/05/2017
+
+Het evaluatiemoment van het \textbf{volledige} werkje vindt plaats
+tijdens \textbf{de oefenzitting in de week van 14/05/2017-18/05/2017}.
+Prof. Berendt en dr. Bogaerts komen langs om enkele vragen te stellen
+over jullie oplossingen. Dit evaluatiemoment omvat ook een demonstratie
+van jullie resultaat, bijvoorbeeld: aantonen dat jullie optimalisatie
+van deel 4 van het werkje effectief een verbetering is t.o.v. het
+originele geval. Teneinde die demonstratie vlot te doen verlopen vragen
+we jullie om \textbf{per groep (minstens) 1 laptop mee te nemen waarop
+jullie oplossingen (i.e. de ingevulde notebooks) goed functioneren}.
+Deze laptop beschikt dus ook over XAMPP (inclusief de gegevensbank van
+dit werkje, uiteraard), gezien de queries in de notebooks ook moeten
+werken.
+
+\textbf{INDIENDEADLINE}: ZONDAG 13 MEI om 23.59
+
+** HOE INDIENEN**: 1. Upload je ingevulde notebook als
+werkje\_04\_groep\_XX.ipynb EN werkje\_04\_groep\_XX.html 2. Vervang XX
+door je groepsnummer. 3. Uploaden doe je op Toledo in je groepsfolder.
+
+Zorg ervoor dat de .html file zeker ook de output van de visualisatie
+bevat, zodat wij deze gemakkelijk kunnen bekijken en niet moeten
+reproduceren door jullie .ipynb te runnen! Op die manier kunnen we zeker
+zijn dat we evalueren wat jullie geproduceerd hebben.
+
+    \subsubsection{Nuttige packages en functies
+inladen}\label{nuttige-packages-en-functies-inladen}
+
+Enkele nuttige packages en functies inladen die verderop van pas zullen
+komen.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} Benodigde packages}
+        \PY{k+kn}{import} \PY{n+nn}{json}            \PY{c+c1}{\PYZsh{} Package om .json files in te laden (bvb kolomnamen zijn zo opgeslagen)}
+        \PY{k+kn}{import} \PY{n+nn}{getpass}         \PY{c+c1}{\PYZsh{} Package om een paswoordveldje te genereren.}
+        \PY{k+kn}{import} \PY{n+nn}{mysql}\PY{n+nn}{.}\PY{n+nn}{connector} \PY{c+c1}{\PYZsh{} MySQL package}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}    \PY{c+c1}{\PYZsh{} Populaire package voor data\PYZhy{}verwerking}
+        \PY{k+kn}{import} \PY{n+nn}{sys}
+        \PY{k+kn}{import} \PY{n+nn}{os}
+        \PY{k+kn}{import} \PY{n+nn}{time}
+        \PY{c+c1}{\PYZsh{} Benodigde packages voor visualisatie in Seaborn}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{sys}\PY{o}{.}\PY{n}{version\PYZus{}info}       \PY{c+c1}{\PYZsh{} Check python versie, wij veronderstellen 3.6}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} sys.version\_info(major=3, minor=6, micro=4, releaselevel='final', serial=0)
+\end{Verbatim}
+            
+    \subsubsection{Interageren met een
+gegevensbank}\label{interageren-met-een-gegevensbank}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{def} \PY{n+nf}{verbind\PYZus{}met\PYZus{}GB}\PY{p}{(}\PY{n}{username}\PY{p}{,} \PY{n}{hostname}\PY{p}{,} \PY{n}{gegevensbanknaam}\PY{p}{)}\PY{p}{:}
+            \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+sd}{    Maak verbinding met een externe gegevensbank}
+        \PY{l+s+sd}{    }
+        \PY{l+s+sd}{    :param  username:          username van de gebruiker, string}
+        \PY{l+s+sd}{    :param  hostname:          naam van de host, string.}
+        \PY{l+s+sd}{                               Dit is in het geval van een lokale server gewoon \PYZsq{}localhost\PYZsq{}}
+        \PY{l+s+sd}{    :param  gegevensbanknaam:  naam van de gegevensbank, string.}
+        \PY{l+s+sd}{    :return connection:        connection object, dit is wat teruggeven wordt }
+        \PY{l+s+sd}{                               door connect() methods van packages die voldoen aan de DB\PYZhy{}API}
+        \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+            
+            \PY{n}{password} \PY{o}{=} \PY{n}{getpass}\PY{o}{.}\PY{n}{getpass}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{} Genereer vakje voor wachtwoord in te geven}
+            
+            \PY{n}{connection} \PY{o}{=} \PY{n}{mysql}\PY{o}{.}\PY{n}{connector}\PY{o}{.}\PY{n}{connect}\PY{p}{(}\PY{n}{host}\PY{o}{=}\PY{n}{hostname}\PY{p}{,}
+                                                 \PY{n}{user}\PY{o}{=}\PY{n}{username}\PY{p}{,}
+                                                 \PY{n}{passwd}\PY{o}{=}\PY{n}{password}\PY{p}{,}
+                                                 \PY{n}{db}\PY{o}{=}\PY{n}{gegevensbanknaam}\PY{p}{)}
+            \PY{k}{return} \PY{n}{connection}
+        
+        
+        \PY{k}{def} \PY{n+nf}{check\PYZus{}perfect\PYZus{}match}\PY{p}{(}\PY{n}{df1}\PY{p}{,} \PY{n}{df2}\PY{p}{)}\PY{p}{:}
+            \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+sd}{    Functie om te checken of 2 DataFrames gelijk zijn.}
+        \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+            \PY{n}{check} \PY{o}{=} \PY{n}{df1}\PY{o}{.}\PY{n}{equals}\PY{p}{(}\PY{n}{df2}\PY{p}{)}
+            \PY{k}{return} \PY{n}{check}
+        
+        
+        \PY{k}{def} \PY{n+nf}{run\PYZus{}query}\PY{p}{(}\PY{n}{connection}\PY{p}{,} \PY{n}{query}\PY{p}{)}\PY{p}{:}
+            \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+sd}{    Voer een query uit op een reeds gemaakte connectie, geeft het resultaat van de query terug}
+        \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+            
+            \PY{c+c1}{\PYZsh{} Making a cursor and executing the query}
+            \PY{n}{cursor} \PY{o}{=} \PY{n}{connection}\PY{o}{.}\PY{n}{cursor}\PY{p}{(}\PY{p}{)}
+            \PY{n}{cursor}\PY{o}{.}\PY{n}{execute}\PY{p}{(}\PY{n}{query}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} Collecting the result and casting it in a pd.DataFrame}
+            \PY{n}{res} \PY{o}{=} \PY{n}{cursor}\PY{o}{.}\PY{n}{fetchall}\PY{p}{(}\PY{p}{)}
+            
+            \PY{k}{return} \PY{n}{res}
+        
+        
+        \PY{k}{def} \PY{n+nf}{res\PYZus{}to\PYZus{}df}\PY{p}{(}\PY{n}{query\PYZus{}result}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{)}\PY{p}{:}
+            \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+sd}{    Giet het resultaat van een uitgevoerde query in een \PYZsq{}pandas dataframe\PYZsq{}}
+        \PY{l+s+sd}{    met vooraf gespecifieerde kolomnamen.}
+        \PY{l+s+sd}{    }
+        \PY{l+s+sd}{    Let op: Het resultaat van de query moet dus exact evenveel kolommen bevatten}
+        \PY{l+s+sd}{    als kolomnamen die je meegeeft. Als dit niet het geval is, is dit een indicatie}
+        \PY{l+s+sd}{    dat je oplossing fout is. (Gezien wij de kolomnamen van de oplossing al cadeau doen)}
+        \PY{l+s+sd}{    }
+        \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+            \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{query\PYZus{}result}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{column\PYZus{}names}\PY{p}{)}
+            \PY{k}{return} \PY{n}{df}
+\end{Verbatim}
+
+
+    \subsection{Optimalisatie}\label{optimalisatie}
+
+    \subsubsection{Opgave}\label{opgave}
+
+Het doel van het eerste deel van deze taak is het optimaliseren van
+onderstaande query.
+
+Een goede oplossing van deze eerste opgave voldoet aan volgende
+criteria: * Verzin een optimalisatie van deze query * De runtime van de
+optimalisatie is significant minder dan die van de originele oplossing
+(een paar procent is te weinig) * Je bent in staat om uit te leggen WAT
+je doet en WAAROM je dat gedaan hebt en WAAROM het werkt.. * Het EXPLAIN
+statement in MySQL is een goede gids om je hierbij te helpen. * Je
+schrijft in deze notebook al kort de redeneringen op die achter jullie
+optimalisatie zitten (dit zal nuttig zijn bij de mondelinge
+verdediging).
+
+Hieronder vinden jullie de query die te optimaliseren is. Wijzig deze
+dus niet.
+
+    \textbf{Beschrijving}
+
+    Het resultaat van deze functie is een Pandas DataFrame dat voor een
+gegeven \emph{jaar\_1} een aantal statistieken van alle staten bevat
+waarbij de gemiddelde lengte van alle spelers geboren in die staat en
+opgenomen in de hall of fame na \emph{jaar\_2} groter is dan
+\emph{lengte}.
+
+Voor die staten moet de tabel de volgende statistieken bevatten: het
+gemiddelde gewicht, de gemiddelde lengte, het gemiddeld aantal batting
+homeruns, en het gemiddeld aantal pitching saves van alle spelers
+(geboren in die staat) die in de hall of fame zijn opgenomen na
+\emph{jaar\_2}.
+
+Sorteer oplopend alfabetisch op staat.
+
+Nb. Lengte is uitgedrukt in inches.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{column\PYZus{}names} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{state}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{avg\PYZus{}weight}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{avg\PYZus{}height}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{avg\PYZus{}homeruns}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{avg\PYZus{}saves}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+De query boom bepaald door de originele query zonder enige
+optmalisaties.
+
+    
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} Dit is de originele query die geoptimaliseerd dient te worden. Niet wijzigen!}
+        \PY{k}{def} \PY{n+nf}{query\PYZus{}to\PYZus{}optimize}\PY{p}{(}\PY{n}{connection}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{,} \PY{n}{jaar\PYZus{}1}\PY{o}{=}\PY{l+m+mi}{2000}\PY{p}{,} \PY{n}{jaar\PYZus{}2}\PY{o}{=}\PY{l+m+mi}{1990}\PY{p}{,} \PY{n}{lengte}\PY{o}{=}\PY{l+m+mi}{75}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{} Actual query}
+            \PY{n}{query}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+s2}{    SELECT m.birthState, AVG(m.weight), AVG(m.height), AVG(bat.HR), AVG(pit.SV)}
+        \PY{l+s+s2}{    FROM Master AS m,}
+        \PY{l+s+s2}{        Pitching AS pit,}
+        \PY{l+s+s2}{        Batting AS bat,}
+        \PY{l+s+s2}{        HallOfFame AS hof}
+        \PY{l+s+s2}{    WHERE pit.yearID = }\PY{l+s+si}{\PYZob{}\PYZcb{}}
+        \PY{l+s+s2}{        AND bat.yearID = }\PY{l+s+si}{\PYZob{}\PYZcb{}}
+        \PY{l+s+s2}{        AND pit.playerID = m.playerID}
+        \PY{l+s+s2}{        AND bat.playerID = m.playerID}
+        \PY{l+s+s2}{        AND m.playerID = hof.playerID}
+        \PY{l+s+s2}{        AND hof.yearID \PYZgt{} }\PY{l+s+si}{\PYZob{}\PYZcb{}}
+        \PY{l+s+s2}{    GROUP BY m.birthState}
+        \PY{l+s+s2}{    HAVING AVG(m.height) \PYZgt{} }\PY{l+s+si}{\PYZob{}\PYZcb{}}
+        \PY{l+s+s2}{    ORDER BY m.birthState ASC;}
+        \PY{l+s+s2}{    }\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{jaar\PYZus{}1}\PY{p}{,} \PY{n}{jaar\PYZus{}1}\PY{p}{,} \PY{n}{jaar\PYZus{}2}\PY{p}{,} \PY{n}{lengte}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} Stap 2 \PYZam{} 3}
+            \PY{n}{res} \PY{o}{=} \PY{n}{run\PYZus{}query}\PY{p}{(}\PY{n}{connection}\PY{p}{,} \PY{n}{query}\PY{p}{)}         \PY{c+c1}{\PYZsh{} Query uitvoeren}
+            \PY{n}{df} \PY{o}{=} \PY{n}{res\PYZus{}to\PYZus{}df}\PY{p}{(}\PY{n}{res}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{)}          \PY{c+c1}{\PYZsh{} Query in DataFrame brengen}
+            
+            \PY{k}{return} \PY{n}{df}
+\end{Verbatim}
+
+
+    Eerst maken we verbinding met de gegevensbank, zoals jullie al deden in
+het vorige deel van het werkje.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{username} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{root}\PY{l+s+s1}{\PYZsq{}}      \PY{c+c1}{\PYZsh{} Vervang dit als je via een andere user queries stuurt}
+        \PY{n}{hostname} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{localhost}\PY{l+s+s1}{\PYZsq{}} \PY{c+c1}{\PYZsh{} Als je een databank lokaal draait, is dit localhost.}
+        \PY{n}{db} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lahman2016ZonderIndexen}\PY{l+s+s1}{\PYZsq{}}      \PY{c+c1}{\PYZsh{} Naam van de gegevensbank op je XAMPP Mysql server}
+        
+        \PY{c+c1}{\PYZsh{} We verbinden met de gegevensbank}
+        \PY{n}{c} \PY{o}{=} \PY{n}{verbind\PYZus{}met\PYZus{}GB}\PY{p}{(}\PY{n}{username}\PY{p}{,} \PY{n}{hostname}\PY{p}{,} \PY{n}{db}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+········
+
+    \end{Verbatim}
+
+    In onderstaande cel bekomen we de runtime van de originele query door
+deze vijf keer te runnen, om tot een betere schatting te komen. Deze
+conventie van runtimes meten dient behouden te worden.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{timings}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} We voeren deze query 5 keer uit om een betere schatting te krijgen van de effectieve runtime.}
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{:}
+            \PY{n}{t1} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{} Start time}
+            \PY{n}{df\PYZus{}orig} \PY{o}{=} \PY{n}{query\PYZus{}to\PYZus{}optimize}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{,} \PY{n}{jaar\PYZus{}1}\PY{o}{=}\PY{l+m+mi}{2000}\PY{p}{,} \PY{n}{jaar\PYZus{}2}\PY{o}{=}\PY{l+m+mi}{1990}\PY{p}{,} \PY{n}{lengte}\PY{o}{=}\PY{l+m+mi}{75}\PY{p}{)}
+            \PY{n}{t2} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{} Stop time}
+            \PY{n}{timings}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{t2}\PY{o}{\PYZhy{}}\PY{n}{t1}\PY{p}{)} 
+            
+        \PY{n}{orig\PYZus{}runtime}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{timings}\PY{p}{)} \PY{c+c1}{\PYZsh{} De uiteindelijke runtime is een gemiddelde van 5 runs.}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{De originele query duurt: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{orig\PYZus{}runtime}\PY{p}{)}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ seconden}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+De originele query duurt:  1.41  seconden
+
+    \end{Verbatim}
+
+    \subsubsection{Optimalisatie}\label{optimalisatie}
+
+In deze sectie is het de bedoeling dat je je optimalisatie realiseert.
+Wat hier al ingevuld staat qua code is enkel om je op weg te helpen.
+
+Je mag zoveel codecellen toevoegen als je nodig acht om je verhaal te
+vertellen. Leg uit wat je doet, en waarom je dat doet. Denk hierbij
+zeker aan het EXPLAIN statement zoals gezien in de les. Gebruik EXPLAIN
+om te identificeren hoe MySQL de query omzet en kijk zo welke effecten
+je verbeteringen hebben. Leg de resultaten van EXPLAIN kort uit.
+
+Beschouw de uitleg rond je oplossing als een soort mini-verslag dat je
+code en query uitlegt.
+
+    \begin{longtable}[]{@{}l@{}}
+\toprule
+\begin{minipage}[b]{0.35\columnwidth}\raggedright\strut
+Verklaring bij gebruikte indexen:\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.35\columnwidth}\raggedright\strut
+In de database zijn de volgende indexen geplaatst
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ indexen
+op selecties:\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.35\columnwidth}\raggedright\strut
+1. Een B+ boom op de kolom yearID van de table halloffame aangezien daar
+een rangequery uitgewerkt staat en een interessante eigenschap van B+
+bomen is dat aan de bladeren wijzers staan die wijzen naar het volgende
+blad.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.35\columnwidth}\raggedright\strut
+de database bezit informatie tussen 1975 en 2011 dit betekent dat er 36
+verschillende waarden zijn voor yearID specifiek in dit geval zijn er 21
+waarden die voldoen aan de ongelijkheid dit betekent dat er over
+(21/36)*4200 =2450 tuples moet itereren.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.35\columnwidth}\raggedright\strut
+2. Een hash index op de kolommen yearID van de tabellen Pitching en
+Batting aangezien daar een point query uitgewerkt is. -\/-\textgreater{}
+meestal 1 à 2 blokken\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.35\columnwidth}\raggedright\strut
+3. Een B+ boom op de kolommen HR, height, weight en SV van de tabellen
+batting, master en pitching. Aangezien er over deze kolommen AVG genomen
+is, wat neerkomt op SUM en COUNT en dit kan zeer efficient mbv B+bomen
+door de bladwijzers die aanwezig zijn op bladeren van de boom.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.35\columnwidth}\raggedright\strut
+4. Gebruik maken van b+ boom voor BirthState kolom bij de tabel master
+omdat men het resultaat groepeert volgens de waarden van deze kolom.
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ indexen
+op joins:\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.35\columnwidth}\raggedright\strut
+Een clustering index op de kolom playerID van master,batting, pitching
+en halloffame\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.35\columnwidth}\raggedright\strut
+1. -\/-\textgreater{}master: primary index op playerID(=unieke kolom)
+=\textgreater{} loopt over index 2. -\/-\textgreater{}batting: 103.000
+tupels met 19.000 unieke waarden voor playerID =\textgreater{} 6 tupels
+per blok 3. -\/-\textgreater{}pitching: 45.000 tuples met 9.300 unieke
+waarden voor playerID =\textgreater{} 5 tupels per blok 4.
+-\/-\textgreater{}halloffame: 4.200 tupels met 1.260 unieke waarden voor
+playerID =\textgreater{} 2 tupels per blok\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k}{def} \PY{n+nf}{optim\PYZus{}enkel\PYZus{}indexen}\PY{p}{(}\PY{n}{connection}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{,} \PY{n}{jaar\PYZus{}1}\PY{o}{=}\PY{l+m+mi}{2000}\PY{p}{,} \PY{n}{jaar\PYZus{}2}\PY{o}{=}\PY{l+m+mi}{1990}\PY{p}{,} \PY{n}{lengte}\PY{o}{=}\PY{l+m+mi}{75}\PY{p}{)}\PY{p}{:}
+            \PY{n}{query}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+s2}{    SELECT m.birthState, AVG(m.weight), AVG(m.height), AVG(bat.HR), AVG(pit.SV)}
+        \PY{l+s+s2}{    FROM Master AS m,}
+        \PY{l+s+s2}{        Pitching AS pit,}
+        \PY{l+s+s2}{        Batting AS bat,}
+        \PY{l+s+s2}{        HallOfFame AS hof}
+        \PY{l+s+s2}{    WHERE pit.yearID = }\PY{l+s+si}{\PYZob{}\PYZcb{}}
+        \PY{l+s+s2}{        AND bat.yearID = }\PY{l+s+si}{\PYZob{}\PYZcb{}}
+        \PY{l+s+s2}{        AND pit.playerID = m.playerID}
+        \PY{l+s+s2}{        AND bat.playerID = m.playerID}
+        \PY{l+s+s2}{        AND m.playerID = hof.playerID}
+        \PY{l+s+s2}{        AND hof.yearID \PYZgt{} }\PY{l+s+si}{\PYZob{}\PYZcb{}}
+        \PY{l+s+s2}{    GROUP BY m.birthState}
+        \PY{l+s+s2}{    HAVING AVG(m.height) \PYZgt{} }\PY{l+s+si}{\PYZob{}\PYZcb{}}
+        \PY{l+s+s2}{    ORDER BY m.birthState ASC;}
+        \PY{l+s+s2}{    }\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{jaar\PYZus{}1}\PY{p}{,} \PY{n}{jaar\PYZus{}1}\PY{p}{,} \PY{n}{jaar\PYZus{}2}\PY{p}{,} \PY{n}{lengte}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{username} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{root}\PY{l+s+s1}{\PYZsq{}}      \PY{c+c1}{\PYZsh{} Vervang dit als je via een andere user queries stuurt}
+        \PY{n}{hostname} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{localhost}\PY{l+s+s1}{\PYZsq{}} \PY{c+c1}{\PYZsh{} Als je een databank lokaal draait, is dit localhost.}
+        \PY{n}{db} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lahman2016test}\PY{l+s+s1}{\PYZsq{}}      \PY{c+c1}{\PYZsh{} Naam van de gegevensbank op je XAMPP Mysql server}
+        
+        \PY{c+c1}{\PYZsh{} We verbinden met de gegevensbank}
+        \PY{n}{c} \PY{o}{=} \PY{n}{verbind\PYZus{}met\PYZus{}GB}\PY{p}{(}\PY{n}{username}\PY{p}{,} \PY{n}{hostname}\PY{p}{,} \PY{n}{db}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+········
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{timings3}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} We voeren deze query 5 keer uit om een betere schatting te krijgen van de effectieve runtime.}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{:}
+             \PY{n}{t1} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{} Start time}
+             \PY{n}{df\PYZus{}orig} \PY{o}{=} \PY{n}{query\PYZus{}to\PYZus{}optimize}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{,} \PY{n}{jaar\PYZus{}1}\PY{o}{=}\PY{l+m+mi}{2000}\PY{p}{,} \PY{n}{jaar\PYZus{}2}\PY{o}{=}\PY{l+m+mi}{1990}\PY{p}{,} \PY{n}{lengte}\PY{o}{=}\PY{l+m+mi}{75}\PY{p}{)}
+             \PY{n}{t2} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{} Stop time}
+             \PY{n}{timings3}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{t2}\PY{o}{\PYZhy{}}\PY{n}{t1}\PY{p}{)} 
+             
+         \PY{n}{orig\PYZus{}runtime}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{timings3}\PY{p}{)} \PY{c+c1}{\PYZsh{} De uiteindelijke runtime is een gemiddelde van 5 runs.}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{De originele query duurt: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{orig\PYZus{}runtime}\PY{p}{)}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ seconden}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+De originele query duurt:  0.04  seconden
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} Maak hier je eerste optimalisatie}
+         \PY{k}{def} \PY{n+nf}{optim\PYZus{}1}\PY{p}{(}\PY{n}{connection}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{,} \PY{n}{jaar\PYZus{}1}\PY{o}{=}\PY{l+m+mi}{2000}\PY{p}{,} \PY{n}{jaar\PYZus{}2}\PY{o}{=}\PY{l+m+mi}{1990}\PY{p}{,} \PY{n}{lengte}\PY{o}{=}\PY{l+m+mi}{75}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} het opstellen }
+             \PY{n}{query}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{l+s+s2}{   }
+         \PY{l+s+s2}{     SELECT bpm.BirthState, AVG(bpm.weight), AVG(bpm.height), AVG(bpm.HR), AVG(bpm.SV)}
+         \PY{l+s+s2}{     FROM}
+         \PY{l+s+s2}{        (SELECT m.playerID, m.BirthState, m.weight, m.height, bp.SV, bp.HR}
+         \PY{l+s+s2}{         FROM   }
+         \PY{l+s+s2}{            (SELECT p.playerID, p.SV, b.HR}
+         \PY{l+s+s2}{             FROM   (SELECT bat.playerID, bat.yearID, bat.HR}
+         \PY{l+s+s2}{                     FROM batting as bat}
+         \PY{l+s+s2}{                    ) as b, }
+         \PY{l+s+s2}{                }
+         \PY{l+s+s2}{                    (SELECT pit.yearID, pit.playerID, pit.SV}
+         \PY{l+s+s2}{                     FROM pitching as pit}
+         \PY{l+s+s2}{                    ) as p}
+         \PY{l+s+s2}{                }
+         \PY{l+s+s2}{             WHERE     p.yearID = }\PY{l+s+si}{\PYZob{}\PYZcb{}}
+         \PY{l+s+s2}{                   AND b.yearID = }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{   }
+         \PY{l+s+s2}{                   AND p.playerID = b.playerID}
+         \PY{l+s+s2}{            ) as bp, }
+         \PY{l+s+s2}{        }
+         \PY{l+s+s2}{        }
+         \PY{l+s+s2}{            (SELECT mas.playerID, mas.BirthState, mas.weight, mas.height }
+         \PY{l+s+s2}{             FROM master as mas}
+         \PY{l+s+s2}{            ) as m}
+         \PY{l+s+s2}{        }
+         \PY{l+s+s2}{        WHERE }
+         \PY{l+s+s2}{            bp.playerID = m.playerID}
+         \PY{l+s+s2}{       ) as bpm,}
+         \PY{l+s+s2}{       }
+         \PY{l+s+s2}{       }
+         \PY{l+s+s2}{        (SELECT hof.playerID}
+         \PY{l+s+s2}{         FROM   halloffame as hof}
+         \PY{l+s+s2}{         WHERE hof.yearID \PYZgt{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}
+         \PY{l+s+s2}{        ) as h}
+         \PY{l+s+s2}{    WHERE h.playerID = bpm.playerID}
+         \PY{l+s+s2}{       }
+         \PY{l+s+s2}{    GROUP BY bpm.birthState}
+         \PY{l+s+s2}{    HAVING AVG(bpm.height) \PYZgt{} }\PY{l+s+si}{\PYZob{}\PYZcb{}}
+         \PY{l+s+s2}{    ORDER BY bpm.birthState ASC;}
+         \PY{l+s+s2}{   }
+         \PY{l+s+s2}{   }
+         \PY{l+s+s2}{    }\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{jaar\PYZus{}1}\PY{p}{,} \PY{n}{jaar\PYZus{}1}\PY{p}{,} \PY{n}{jaar\PYZus{}2}\PY{p}{,} \PY{n}{lengte}\PY{p}{)}
+         
+             
+             \PY{c+c1}{\PYZsh{} Stap 2 \PYZam{} 3}
+             \PY{n}{res} \PY{o}{=} \PY{n}{run\PYZus{}query}\PY{p}{(}\PY{n}{connection}\PY{p}{,} \PY{n}{query}\PY{p}{)}         \PY{c+c1}{\PYZsh{} Query uitvoeren}
+             \PY{n}{df} \PY{o}{=} \PY{n}{res\PYZus{}to\PYZus{}df}\PY{p}{(}\PY{n}{res}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{)}          \PY{c+c1}{\PYZsh{} Query in DataFrame brengen}
+             
+             \PY{k}{return} \PY{n}{df}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{username} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{root}\PY{l+s+s1}{\PYZsq{}}      \PY{c+c1}{\PYZsh{} Vervang dit als je via een andere user queries stuurt}
+         \PY{n}{hostname} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{localhost}\PY{l+s+s1}{\PYZsq{}} \PY{c+c1}{\PYZsh{} Als je een databank lokaal draait, is dit localhost.}
+         \PY{n}{db} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lahman2016test}\PY{l+s+s1}{\PYZsq{}}      \PY{c+c1}{\PYZsh{} Naam van de gegevensbank op je XAMPP Mysql server}
+         
+         \PY{c+c1}{\PYZsh{} We verbinden met de gegevensbank}
+         \PY{n}{c} \PY{o}{=} \PY{n}{verbind\PYZus{}met\PYZus{}GB}\PY{p}{(}\PY{n}{username}\PY{p}{,} \PY{n}{hostname}\PY{p}{,} \PY{n}{db}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+········
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{timings2}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} We voeren deze query 5 keer uit om een betere schatting te krijgen van de effectieve runtime.}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{:}
+             \PY{n}{t1} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{} Start time}
+             \PY{n}{df\PYZus{}orig} \PY{o}{=} \PY{n}{query\PYZus{}to\PYZus{}optimize}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{,} \PY{n}{jaar\PYZus{}1}\PY{o}{=}\PY{l+m+mi}{2000}\PY{p}{,} \PY{n}{jaar\PYZus{}2}\PY{o}{=}\PY{l+m+mi}{1990}\PY{p}{,} \PY{n}{lengte}\PY{o}{=}\PY{l+m+mi}{75}\PY{p}{)}
+             \PY{n}{t2} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{} Stop time}
+             \PY{n}{timings2}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{t2}\PY{o}{\PYZhy{}}\PY{n}{t1}\PY{p}{)} 
+             
+         \PY{n}{orig\PYZus{}runtime}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{timings2}\PY{p}{)} \PY{c+c1}{\PYZsh{} De uiteindelijke runtime is een gemiddelde van 5 runs.}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{De originele query duurt: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{orig\PYZus{}runtime}\PY{p}{)}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ seconden}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+De originele query duurt:  0.02  seconden
+
+    \end{Verbatim}
+
+    \subsubsection{Controle}\label{controle}
+
+De onderstaande codecel vergelijkt de runtime van de optimalisatie met
+die van de originele query, door een gemiddelde te nemen over 5 runs.
+Ook wordt er nagegaan dat de resultaten zeker volledig gelijk zijn.
+Wijzig deze controlewijze niet.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c+c1}{\PYZsh{} Test hier je eerste optimalisatie}
+         
+         \PY{n}{timings\PYZus{}optim\PYZus{}1} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{:}
+             \PY{n}{t1} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{} Start time}
+             \PY{n}{df\PYZus{}optim\PYZus{}1} \PY{o}{=} \PY{n}{optim\PYZus{}1}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{,} \PY{n}{jaar\PYZus{}1}\PY{o}{=}\PY{l+m+mi}{2000}\PY{p}{,} \PY{n}{jaar\PYZus{}2}\PY{o}{=}\PY{l+m+mi}{1990}\PY{p}{,} \PY{n}{lengte}\PY{o}{=}\PY{l+m+mi}{75}\PY{p}{)}
+             \PY{n}{t2} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{} Stop time}
+             \PY{n}{timings\PYZus{}optim\PYZus{}1}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{t2}\PY{o}{\PYZhy{}}\PY{n}{t1}\PY{p}{)} 
+             
+         \PY{n}{optim\PYZus{}1\PYZus{}runtime} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{timings\PYZus{}optim\PYZus{}1}\PY{p}{)} \PY{c+c1}{\PYZsh{} Runtime optimalisatie 1}
+         
+         \PY{c+c1}{\PYZsh{} Vergelijken met originele query}
+         \PY{n}{diff} \PY{o}{=} \PY{n}{orig\PYZus{}runtime}\PY{o}{\PYZhy{}}\PY{n}{optim\PYZus{}1\PYZus{}runtime} \PY{c+c1}{\PYZsh{} Winst t.o.v. origineel}
+         \PY{n}{rel\PYZus{}diff} \PY{o}{=} \PY{n}{diff}\PY{o}{/}\PY{n}{orig\PYZus{}runtime} \PY{c+c1}{\PYZsh{} Relatieve winst}
+         \PY{n}{check} \PY{o}{=} \PY{n}{check\PYZus{}perfect\PYZus{}match}\PY{p}{(}\PY{n}{df\PYZus{}orig}\PY{p}{,}\PY{n}{df\PYZus{}optim\PYZus{}1}\PY{p}{)} \PY{c+c1}{\PYZsh{} Nagaan of de resultaten exact gelijk zijn.}
+         
+         \PY{c+c1}{\PYZsh{} Belangrijkste resultaten printen.}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{De optimalisatie duurt: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{optim\PYZus{}1\PYZus{}runtime}\PY{p}{)}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ seconden}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{De originele versie duurde: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{orig\PYZus{}runtime}\PY{p}{)}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ seconden}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{De netto tijdwinst is dus: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{diff}\PY{p}{)}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ seconden, oftewel}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{n}{rel\PYZus{}diff}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}} \PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Is het resultaat equivalent? }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{check}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+De optimalisatie duurt:  0.01  seconden
+De originele versie duurde:  0.02  seconden
+De netto tijdwinst is dus:  0.01  seconden, oftewel 59.84 \%
+Is het resultaat equivalent?  True
+
+    \end{Verbatim}
+
+    \subsection{Visualisatie}\label{visualisatie}
+
+\subsubsection{Opgave}\label{opgave}
+
+In het laatste onderdeel van het werkje laten we jullie volledig vrij.
+Jullie hebben ondertussen geleerd om data uit een gegevensbank op te
+halen, de volgende stap is om deze data effectief voor iets nuttigs te
+gebruiken.
+
+Een snelle manier om gegevens overzichtelijk weer te geven is
+visualisatie. Een goede visualisatie kan zeker in een eerste fase van
+data-analyse echt al inzichten verschaffen. Wij vragen dus aan jullie
+een of meerdere visualisaties te realiseren, met data uit de
+gegevensbank die jullie voor dit werkje gebruikt hebben.
+
+Een goede oplossing van deze opgave voldoet aan volgende criteria: *
+Schrijf een query die informatie uit de gegevensbank ophaalt, en in een
+DataFrame stopt. * Maak een interessante visualisatie van (een deel van)
+de data in die DataFrame * Je beschrijft kort (mini-verslag hier in de
+notebook) wat je doet, en wat de inzichten zijn die de visualisatie
+verschaft. * Je bent in staat om dit mini-verslag ook mondeling te
+verdedigen, i.e. antwoorden op: wat doe je, waarom doe je dit, en wat
+was het resultaat. * 1 visualisatie volstaat, meer mag altijd.
+
+\subsubsection{Nuttige packages}\label{nuttige-packages}
+
+Om jullie al een beetje op weg te helpen, geven we jullie alvast de naam
+van twee handige en veelvoorkomende visualisatietools die goed werken
+met pandas DataFrames:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  seaborn
+\item
+  matplotlib
+\end{enumerate}
+
+Voor een korte inleiding ivm seaborn kan je hier kijken:
+https://chrisalbon.com/python/pandas\_with\_seaborn.html Voor een korte
+inleiding ivm matplotlib kan je hier kijken:
+http://pandas.pydata.org/pandas-docs/stable/visualization.html
+
+Natuurlijk moet je vooraleer je aan zo'n visualisatie kan beginnen, al
+een pandas DataFrame hebben dat de juiste informatie bevat. De eerste
+stap zal er dus in bestaan om een goede query te schrijven die de nodige
+informatie uit de gegevensbank weet te halen, gevolgd door een
+visualisatie van de DataFrame die uit die query volgt.
+
+    \begin{longtable}[]{@{}l@{}}
+\toprule
+Plot 1: evolutie aantal spelers\tabularnewline
+\bottomrule
+\end{longtable}
+
+De volgende grafiek toont het aantal spelers dat elk jaar deelnam aan
+een baseballevenement. Er is een stijgende trend op te merken in de
+grafiek.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{column\PYZus{}names\PYZus{}vis} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{players}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{c+c1}{\PYZsh{} Maak hier je eerste optimalisatie}
+         \PY{k}{def} \PY{n+nf}{query\PYZus{}visualisatie}\PY{p}{(}\PY{n}{connection}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} het opstellen }
+             \PY{n}{query}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{l+s+s2}{        SELECT count(DISTINCT a.playerID), a.yearID}
+         \PY{l+s+s2}{        FROM   appearances as a}
+         \PY{l+s+s2}{        GROUP BY a.yearID}
+         \PY{l+s+s2}{        }\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{c+c1}{\PYZsh{} Stap 2 \PYZam{} 3}
+             \PY{n}{res} \PY{o}{=} \PY{n}{run\PYZus{}query}\PY{p}{(}\PY{n}{connection}\PY{p}{,} \PY{n}{query}\PY{p}{)}         \PY{c+c1}{\PYZsh{} Query uitvoeren}
+             \PY{n}{df} \PY{o}{=} \PY{n}{res\PYZus{}to\PYZus{}df}\PY{p}{(}\PY{n}{res}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{)}          \PY{c+c1}{\PYZsh{} Query in DataFrame brengen}
+                
+             \PY{k}{return} \PY{n}{df}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{username} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{root}\PY{l+s+s1}{\PYZsq{}}      \PY{c+c1}{\PYZsh{} Vervang dit als je via een andere user queries stuurt}
+         \PY{n}{hostname} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{localhost}\PY{l+s+s1}{\PYZsq{}} \PY{c+c1}{\PYZsh{} Als je een databank lokaal draait, is dit localhost.}
+         \PY{n}{db} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lahman2016test}\PY{l+s+s1}{\PYZsq{}}      \PY{c+c1}{\PYZsh{} Naam van de gegevensbank op je XAMPP Mysql server}
+         
+         \PY{c+c1}{\PYZsh{} We verbinden met de gegevensbank}
+         \PY{n}{c} \PY{o}{=} \PY{n}{verbind\PYZus{}met\PYZus{}GB}\PY{p}{(}\PY{n}{username}\PY{p}{,} \PY{n}{hostname}\PY{p}{,} \PY{n}{db}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+········
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{c+c1}{\PYZsh{} De voorbeeldquery heeft dezelfde kolomnamen als query 1, dus we gebruiken die}
+         \PY{n}{kolommen} \PY{o}{=} \PY{n}{column\PYZus{}names\PYZus{}vis}
+         
+         \PY{c+c1}{\PYZsh{} Functie uitvoeren, geeft resultaat van de query in een DataFrame}
+         \PY{n}{df} \PY{o}{=} \PY{n}{query\PYZus{}visualisatie}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{column\PYZus{}names\PYZus{}vis}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{players}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} We inspecteren de eerste paar resultaten (voor alles te zien: laat .head() weg)}
+         \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}44}]:}    players  year
+         0      115  1871
+         1      143  1872
+         2      122  1873
+         3      120  1874
+         4      190  1875
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_33_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Plot 2: Evolutie aantal actieve
+ploegen}\label{plot-2-evolutie-aantal-actieve-ploegen}
+
+    De volgende grafiek toont het aantal ploegen dat elk jaar acief is. Er
+is een stijgende trend op te merken in de grafiek.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{n}{column\PYZus{}names\PYZus{}vis2} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Teams}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{c+c1}{\PYZsh{} Maak hier je eerste optimalisatie}
+         \PY{k}{def} \PY{n+nf}{query\PYZus{}visualisatie2}\PY{p}{(}\PY{n}{connection}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} het opstellen }
+             \PY{n}{query}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{l+s+s2}{        SELECT count(*)}
+         \PY{l+s+s2}{        FROM   Teams as t, teamsfranchises as tf}
+         \PY{l+s+s2}{        WHERE  tf.franchID = t.franchID AND tf.active = }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{Y}\PY{l+s+s2}{\PYZsq{}}
+         \PY{l+s+s2}{        GROUP BY t.yearID}
+         \PY{l+s+s2}{        }\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{c+c1}{\PYZsh{} Stap 2 \PYZam{} 3}
+             \PY{n}{res} \PY{o}{=} \PY{n}{run\PYZus{}query}\PY{p}{(}\PY{n}{connection}\PY{p}{,} \PY{n}{query}\PY{p}{)}         \PY{c+c1}{\PYZsh{} Query uitvoeren}
+             \PY{n}{df} \PY{o}{=} \PY{n}{res\PYZus{}to\PYZus{}df}\PY{p}{(}\PY{n}{res}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{)}          \PY{c+c1}{\PYZsh{} Query in DataFrame brengen}
+                
+             \PY{k}{return} \PY{n}{df}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{n}{username} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{root}\PY{l+s+s1}{\PYZsq{}}      \PY{c+c1}{\PYZsh{} Vervang dit als je via een andere user queries stuurt}
+         \PY{n}{hostname} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{localhost}\PY{l+s+s1}{\PYZsq{}} \PY{c+c1}{\PYZsh{} Als je een databank lokaal draait, is dit localhost.}
+         \PY{n}{db} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lahman2016test}\PY{l+s+s1}{\PYZsq{}}      \PY{c+c1}{\PYZsh{} Naam van de gegevensbank op je XAMPP Mysql server}
+         
+         \PY{c+c1}{\PYZsh{} We verbinden met de gegevensbank}
+         \PY{n}{c} \PY{o}{=} \PY{n}{verbind\PYZus{}met\PYZus{}GB}\PY{p}{(}\PY{n}{username}\PY{p}{,} \PY{n}{hostname}\PY{p}{,} \PY{n}{db}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+········
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{c+c1}{\PYZsh{} De voorbeeldquery heeft dezelfde kolomnamen als query 1, dus we gebruiken die}
+         \PY{n}{kolommen} \PY{o}{=} \PY{n}{column\PYZus{}names\PYZus{}vis2}
+         
+         \PY{c+c1}{\PYZsh{} Functie uitvoeren, geeft resultaat van de query in een DataFrame}
+         \PY{n}{df} \PY{o}{=} \PY{n}{query\PYZus{}visualisatie2}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{column\PYZus{}names\PYZus{}vis2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{df}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} We inspecteren de eerste paar resultaten (voor alles te zien: laat .head() weg)}
+         \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}48}]:}    Teams
+         0      2
+         1      2
+         2      2
+         3      2
+         4      2
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_39_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
