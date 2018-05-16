@@ -141,7 +141,7 @@
     \def\gt{>}
     \def\lt{<}
     % Document parameters
-    \title{04 - ASSIGNMENT(3)}
+    \title{werkje\_04\_groep\_01}
     
     
     
@@ -463,6 +463,8 @@ Nb. Lengte is uitgedrukt in inches.
 \end{Verbatim}
 
 
+    \subsection{Query boom 1}\label{query-boom-1}
+
     \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 De query boom bepaald door de originele query zonder enige
@@ -538,7 +540,7 @@ conventie van runtimes meten dient behouden te worden.
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-De originele query duurt:  1.41  seconden
+De originele query duurt:  3.03  seconden
 
     \end{Verbatim}
 
@@ -670,6 +672,16 @@ De originele query duurt:  0.04  seconden
 
     \end{Verbatim}
 
+    \begin{longtable}[]{@{}l@{}}
+\toprule
+Query boom 2\tabularnewline
+\bottomrule
+\end{longtable}
+
+    Toepassen van de heuristische regels geeft een geoptimaliseerde query.
+
+    
+
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} Maak hier je eerste optimalisatie}
          \PY{k}{def} \PY{n+nf}{optim\PYZus{}1}\PY{p}{(}\PY{n}{connection}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{,} \PY{n}{jaar\PYZus{}1}\PY{o}{=}\PY{l+m+mi}{2000}\PY{p}{,} \PY{n}{jaar\PYZus{}2}\PY{o}{=}\PY{l+m+mi}{1990}\PY{p}{,} \PY{n}{lengte}\PY{o}{=}\PY{l+m+mi}{75}\PY{p}{)}\PY{p}{:}
@@ -797,7 +809,7 @@ Wijzig deze controlewijze niet.
     \begin{Verbatim}[commandchars=\\\{\}]
 De optimalisatie duurt:  0.01  seconden
 De originele versie duurde:  0.02  seconden
-De netto tijdwinst is dus:  0.01  seconden, oftewel 59.84 \%
+De netto tijdwinst is dus:  0.01  seconden, oftewel 56.68 \%
 Is het resultaat equivalent?  True
 
     \end{Verbatim}
@@ -863,12 +875,12 @@ een baseballevenement. Er is een stijgende trend op te merken in de
 grafiek.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{column\PYZus{}names\PYZus{}vis} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{players}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{column\PYZus{}names\PYZus{}vis} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{players}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}39}]:} \PY{c+c1}{\PYZsh{} Maak hier je eerste optimalisatie}
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{} Maak hier je eerste optimalisatie}
          \PY{k}{def} \PY{n+nf}{query\PYZus{}visualisatie}\PY{p}{(}\PY{n}{connection}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{)}\PY{p}{:}
              \PY{c+c1}{\PYZsh{} het opstellen }
              \PY{n}{query}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
@@ -885,7 +897,7 @@ grafiek.
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{username} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{root}\PY{l+s+s1}{\PYZsq{}}      \PY{c+c1}{\PYZsh{} Vervang dit als je via een andere user queries stuurt}
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{username} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{root}\PY{l+s+s1}{\PYZsq{}}      \PY{c+c1}{\PYZsh{} Vervang dit als je via een andere user queries stuurt}
          \PY{n}{hostname} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{localhost}\PY{l+s+s1}{\PYZsq{}} \PY{c+c1}{\PYZsh{} Als je een databank lokaal draait, is dit localhost.}
          \PY{n}{db} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lahman2016test}\PY{l+s+s1}{\PYZsq{}}      \PY{c+c1}{\PYZsh{} Naam van de gegevensbank op je XAMPP Mysql server}
          
@@ -900,7 +912,7 @@ grafiek.
     \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}44}]:} \PY{c+c1}{\PYZsh{} De voorbeeldquery heeft dezelfde kolomnamen als query 1, dus we gebruiken die}
+{\color{incolor}In [{\color{incolor}18}]:} \PY{c+c1}{\PYZsh{} De voorbeeldquery heeft dezelfde kolomnamen als query 1, dus we gebruiken die}
          \PY{n}{kolommen} \PY{o}{=} \PY{n}{column\PYZus{}names\PYZus{}vis}
          
          \PY{c+c1}{\PYZsh{} Functie uitvoeren, geeft resultaat van de query in een DataFrame}
@@ -912,7 +924,7 @@ grafiek.
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}44}]:}    players  year
+{\color{outcolor}Out[{\color{outcolor}18}]:}    players  year
          0      115  1871
          1      143  1872
          2      122  1873
@@ -921,23 +933,26 @@ grafiek.
 \end{Verbatim}
             
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_33_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_37_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
-    \subsection{Plot 2: Evolutie aantal actieve
-ploegen}\label{plot-2-evolutie-aantal-actieve-ploegen}
+    \begin{longtable}[]{@{}l@{}}
+\toprule
+Plot 2: Evolutie aantal actieve ploegen\tabularnewline
+\bottomrule
+\end{longtable}
 
-    De volgende grafiek toont het aantal ploegen dat elk jaar acief is. Er
-is een stijgende trend op te merken in de grafiek.
+    De volgende grafiek toont het aantal ploegen dat elk jaar acief is.
+Beginnend vanaf het jaar 1871 tot 2016
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}45}]:} \PY{n}{column\PYZus{}names\PYZus{}vis2} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Teams}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{column\PYZus{}names\PYZus{}vis2} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Teams}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}46}]:} \PY{c+c1}{\PYZsh{} Maak hier je eerste optimalisatie}
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c+c1}{\PYZsh{} Maak hier je eerste optimalisatie}
          \PY{k}{def} \PY{n+nf}{query\PYZus{}visualisatie2}\PY{p}{(}\PY{n}{connection}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{)}\PY{p}{:}
              \PY{c+c1}{\PYZsh{} het opstellen }
              \PY{n}{query}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
@@ -955,7 +970,7 @@ is een stijgende trend op te merken in de grafiek.
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}47}]:} \PY{n}{username} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{root}\PY{l+s+s1}{\PYZsq{}}      \PY{c+c1}{\PYZsh{} Vervang dit als je via een andere user queries stuurt}
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{username} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{root}\PY{l+s+s1}{\PYZsq{}}      \PY{c+c1}{\PYZsh{} Vervang dit als je via een andere user queries stuurt}
          \PY{n}{hostname} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{localhost}\PY{l+s+s1}{\PYZsq{}} \PY{c+c1}{\PYZsh{} Als je een databank lokaal draait, is dit localhost.}
          \PY{n}{db} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lahman2016test}\PY{l+s+s1}{\PYZsq{}}      \PY{c+c1}{\PYZsh{} Naam van de gegevensbank op je XAMPP Mysql server}
          
@@ -970,7 +985,7 @@ is een stijgende trend op te merken in de grafiek.
     \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}48}]:} \PY{c+c1}{\PYZsh{} De voorbeeldquery heeft dezelfde kolomnamen als query 1, dus we gebruiken die}
+{\color{incolor}In [{\color{incolor}22}]:} \PY{c+c1}{\PYZsh{} De voorbeeldquery heeft dezelfde kolomnamen als query 1, dus we gebruiken die}
          \PY{n}{kolommen} \PY{o}{=} \PY{n}{column\PYZus{}names\PYZus{}vis2}
          
          \PY{c+c1}{\PYZsh{} Functie uitvoeren, geeft resultaat van de query in een DataFrame}
@@ -982,7 +997,7 @@ is een stijgende trend op te merken in de grafiek.
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}48}]:}    Teams
+{\color{outcolor}Out[{\color{outcolor}22}]:}    Teams
          0      2
          1      2
          2      2
@@ -991,7 +1006,78 @@ is een stijgende trend op te merken in de grafiek.
 \end{Verbatim}
             
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_39_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_43_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{longtable}[]{@{}l@{}}
+\toprule
+Plot 3: Aantal gespeelde games per stadium gedurende een bepaald
+jaar\tabularnewline
+\bottomrule
+\end{longtable}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{column\PYZus{}names\PYZus{}vis3} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Games}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{c+c1}{\PYZsh{} Maak hier je eerste optimalisatie}
+         \PY{k}{def} \PY{n+nf}{query\PYZus{}visualisatie3}\PY{p}{(}\PY{n}{connection}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{,} \PY{n}{jaar1} \PY{o}{=} \PY{l+m+mi}{2000}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} het opstellen }
+             \PY{n}{query}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{l+s+s2}{        SELECT AVG(t.G)}
+         \PY{l+s+s2}{        FROM   Teams as t}
+         \PY{l+s+s2}{        WHERE  t.yearID = }\PY{l+s+si}{\PYZob{}\PYZcb{}}
+         \PY{l+s+s2}{        GROUP BY t.park}
+         \PY{l+s+s2}{        }\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{jaar1}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} Stap 2 \PYZam{} 3}
+             \PY{n}{res} \PY{o}{=} \PY{n}{run\PYZus{}query}\PY{p}{(}\PY{n}{connection}\PY{p}{,} \PY{n}{query}\PY{p}{)}         \PY{c+c1}{\PYZsh{} Query uitvoeren}
+             \PY{n}{df} \PY{o}{=} \PY{n}{res\PYZus{}to\PYZus{}df}\PY{p}{(}\PY{n}{res}\PY{p}{,} \PY{n}{column\PYZus{}names}\PY{p}{)}          \PY{c+c1}{\PYZsh{} Query in DataFrame brengen}
+                
+             \PY{k}{return} \PY{n}{df}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{username} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{root}\PY{l+s+s1}{\PYZsq{}}      \PY{c+c1}{\PYZsh{} Vervang dit als je via een andere user queries stuurt}
+         \PY{n}{hostname} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{localhost}\PY{l+s+s1}{\PYZsq{}} \PY{c+c1}{\PYZsh{} Als je een databank lokaal draait, is dit localhost.}
+         \PY{n}{db} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lahman2016test}\PY{l+s+s1}{\PYZsq{}}      \PY{c+c1}{\PYZsh{} Naam van de gegevensbank op je XAMPP Mysql server}
+         
+         \PY{c+c1}{\PYZsh{} We verbinden met de gegevensbank}
+         \PY{n}{c} \PY{o}{=} \PY{n}{verbind\PYZus{}met\PYZus{}GB}\PY{p}{(}\PY{n}{username}\PY{p}{,} \PY{n}{hostname}\PY{p}{,} \PY{n}{db}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+········
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{c+c1}{\PYZsh{} De voorbeeldquery heeft dezelfde kolomnamen als query 1, dus we gebruiken die}
+         \PY{n}{kolommen} \PY{o}{=} \PY{n}{column\PYZus{}names\PYZus{}vis3}
+         
+         \PY{c+c1}{\PYZsh{} Functie uitvoeren, geeft resultaat van de query in een DataFrame}
+         \PY{n}{df} \PY{o}{=} \PY{n}{query\PYZus{}visualisatie3}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{column\PYZus{}names\PYZus{}vis3}\PY{p}{,} \PY{n}{jaar1} \PY{o}{=} \PY{l+m+mi}{2000}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{df}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} We inspecteren de eerste paar resultaten (voor alles te zien: laat .head() weg)}
+         \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}30}]:}       Teams
+         0  162.0000
+         1  162.0000
+         2  163.0000
+         3  162.0000
+         4  162.0000
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_48_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
